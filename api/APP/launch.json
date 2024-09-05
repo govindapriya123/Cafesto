@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Debug (Launch) - Current File",
+        "request": "launch",
+        "mainClass": "com.cafe",
+        "projectName": "Cafe-Managment-System",
+        "args": "",
+        "vmArgs": "-Dspring.profiles.active=dev"
+      },
+      {
+        "type": "java",
+        "name": "Debug (Attach) - Remote",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005
+      }
+    ]
+  }
+  

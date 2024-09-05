@@ -1,0 +1,15 @@
+/* src/components/CartPage.css */
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.cart-list {
+    width: 100%;
+    max-width: 600px;
+}

@@ -1,0 +1,49 @@
+.login-form {
+  padding: 2rem;
+}
+
+.login-form h5 {
+  text-align: center;
+}
+
+.login-form hr {
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form .btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-form .btn-link:hover {
+  text-decoration: underline;
+}
+
+.login-form .fab {
+  font-size: 1.5rem;
+}
+
+/* Center the modal title */
+.custom-modal-header {
+  position: relative;
+}
+
+.custom-modal-header .modal-title {
+  margin: 0 auto;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+ transform: translateX(-50%);
+}
+
+/* Adjust the close button position */
+.custom-modal-header .btn-close {
+  position: absolute;
+  right: 1rem;
+}
