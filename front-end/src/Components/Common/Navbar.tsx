@@ -19,7 +19,6 @@ export const Header=()=>{
   useEffect(() => {
     // Check if authentication token exists in localStorage or sessionStorage
    // You can change this based on your token storage method
-   console.log('--token--',token);
     if (token) {
       const isTokenExpired = checkTokenExpiration(token);
       if(isTokenExpired){
@@ -77,10 +76,6 @@ export const Header=()=>{
   };
 
 
-  useEffect(()=>{
-   console.log('--isLoggedIn--',isLoggedIn);
-  },[isLoggedIn]);
-
   const navigateToShoppingCart = () => {
     navigate('/cart'); // Replace '/cart' with your desired route
   };
@@ -101,20 +96,18 @@ export const Header=()=>{
               <Nav.Link href="/desserts">Deserts</Nav.Link>
               <Nav.Link href="/beverages">Beverages</Nav.Link>
             </Nav>
-            <Form onSubmit={handleSearch}>
+            <Form onSubmit={handleSearch} style={{padding:10}}>
               <FormControl type="text" placeholder="Search" className="mr-sm-2"   value={name}
                         onChange={(e) => setName(e.target.value)}/>
             </Form>
-           {!isLoggedIn? <Button onClick={() => {navigate('/login') } }><AiOutlineUser size={20} /></Button>:<Button onClick={handleLogout}> <FontAwesomeIcon icon={faSignOutAlt} /></Button>}
-            <div className="cart-icon-container">
+           {!isLoggedIn? <Button onClick={() => {navigate('/login') } }><AiOutlineUser  size={20} /></Button>:<Button  onClick={handleLogout}> <FontAwesomeIcon  icon={faSignOutAlt} /></Button>}
+            <div className="cart-icon-container" style={{padding:10}}>
             <FaShoppingCart size={24} color='blue' onClick={navigateToShoppingCart}/>
             {cart.length>0&& <span className="cart-badge">{cart.length}</span>}
         </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* <LoginModal show={show} handleClose={handleClose} handleShowSignup={handleShowSignup} />
-      <SignupModal show={showSignupModal} handleClose={handleCloseSignup} /> */}
       </>
     )
 };
