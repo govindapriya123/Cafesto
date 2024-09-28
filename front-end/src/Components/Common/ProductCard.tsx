@@ -18,7 +18,7 @@ export const ProductCard = ( product:any ) => {
   const addToCart = () => {
     let cart = getCart();
     const product = data.product; // Ensure that product is accessed correctly
-    const existingProduct = cart.find((item) => item.id === product.productId);
+    const existingProduct = cart.find((item) => item.productId === product.productId);
     if (existingProduct) {
         existingProduct.quantity += quantity;
     } else {
@@ -28,11 +28,8 @@ export const ProductCard = ( product:any ) => {
 };
 
 
-    // console.log('--imageUrl--',data.imageUrl);
-    console.log(data);
     if (!product) return null;
     const localUri=`http://localhost:8086/${data.product.imageUrl}`;
-    // console.log('--localUri--',localUri);
   return (
     <Card style={{ width: '18rem', margin: '20px' }}>
       <Card.Img variant="top" src={localUri} width="250" height="250" />

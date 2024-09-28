@@ -7,7 +7,7 @@ export const Desserts=()=>{
 
      const [data,setData]=useState<any>();
 useEffect(()=>{
-fetchProducts(12)
+fetchProducts(1)
 .then((result) => {
     setData(result);
   

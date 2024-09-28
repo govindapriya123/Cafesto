@@ -30,8 +30,6 @@ public class AdminController {
 	public RegistrationAdminStatus register(@RequestBody Admin admin){
 		try {
 			int id= adminService.register(admin);
-			
-			
 			RegistrationAdminStatus status = new RegistrationAdminStatus();
 			status.setStatus(true);
 			status.setMessage("Admin registered successfully!!");

@@ -9,7 +9,7 @@ export const Beverages=()=>{
       // Simulating fetching products, replace with actual fetch logic
       const fetchData = async () => {
         try {
-          const result = await fetchProducts(13); // Replace with your category_id
+          const result = await fetchProducts(2); // Replace with your category_id
           setData(result);
         } catch (error) {
           console.error('Error fetching products:', error);
