@@ -2,6 +2,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import FoodImage from '../Resources/food1.jpg';
 import FoodImage1 from '../Resources/food2.jpg';
 import Deserts from '../Resources/Cake.jpg';
+import { Footer } from './Common/Footer';
 import Beverages from '../Resources/beverages.jpg';
 export const HomePage=()=>{
    return(
@@ -24,7 +25,7 @@ export const HomePage=()=>{
             className="d-block w-100 carousel-image"
             src={FoodImage1}
             alt="lasgna"
-            style={{width:4000,height:700}}
+            style={{width:400,height:700}}
             />
             {/* <h1>Singapore Lasagna</h1> */}
          </div>
@@ -52,6 +53,7 @@ export const HomePage=()=>{
          </div>
          </Carousel.Item>
        </Carousel>
+       <Footer/>
     </div>
    )
 };

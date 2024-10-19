@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { HomePage } from "./Components/HomePage";
 import { FoodsPage } from "./Components/FoodsPage";
 import { Beverages } from "./Components/Beverages";
@@ -10,22 +10,31 @@ import LoginPage from "./Components/Login/Login";
 import SignupPage from "./Components/Login/SignUp";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import { useRef, useState } from "react";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+  const handleSearchChange = (query:any) => {
+    setSearchQuery(query);
+    if (query) {
+      // Navigate to the foods page with the search query as a URL parameter
+      navigate(`/foods?name=${query}`);
+    } // Update the search query state
+  };
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      <Header searchChange={handleSearchChange}/>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/foods' element={<FoodsPage />} />
-        <Route path='/desserts' element={<Desserts />} />
-        <Route path='/beverages' element={<Beverages />} /> 
+        <Route path='/foods' element={<FoodsPage searchQuery={searchQuery} />} />
+        <Route path='/desserts' element={<Desserts searchQuery={searchQuery} />} />
+        <Route path='/beverages' element={<Beverages  searchQuery={searchQuery}/>} /> 
         <Route path='/cart' element={<CartPage />} />
         <Route path='/payments' element={<PaymentPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
       </Routes>
-      
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -37,8 +46,7 @@ function App() {
         draggable
         pauseOnHover
       />
-      {/* <Footer /> */}
-    </BrowserRouter>
+    </>
   );
 }
 

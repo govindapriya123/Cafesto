@@ -5,11 +5,11 @@ import { FaShoppingCart } from 'react-icons/fa';
 import './CartIcon.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCart } from '../../Utils/localStorageUtils';
+import { getCart } from '../../Utils/Utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {jwtDecode} from 'jwt-decode';
-export const Header=()=>{
+export const Header=({searchChange}:any)=>{
   const navigate =  useNavigate();
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,7 +58,7 @@ export const Header=()=>{
       searchParams.set('name', name);
       navigate(`${currentPath}?${searchParams.toString()}`);
 
-    }else{
+    }else {
        navigate(`/foods?name=${name}`);
     }
     // Example: You can log the current path or perform specific actions based on it
@@ -67,6 +67,13 @@ export const Header=()=>{
    
 };
 
+const handleSearchChange = (e:any) => {
+  const query = e.target.value;
+  if(searchChange){
+  searchChange(query);
+  }
+  setName(query);
+};
   const handleTokenExpiration = () => {
     // Handle token expiration actions
     localStorage.removeItem('token');
@@ -93,12 +100,12 @@ export const Header=()=>{
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/foods">Food</Nav.Link>
-              <Nav.Link href="/desserts">Deserts</Nav.Link>
+              <Nav.Link href="/desserts">Desserts</Nav.Link>
               <Nav.Link href="/beverages">Beverages</Nav.Link>
             </Nav>
             <Form onSubmit={handleSearch} style={{padding:10}}>
               <FormControl type="text" placeholder="Search" className="mr-sm-2"   value={name}
-                        onChange={(e) => setName(e.target.value)}/>
+                        onChange={handleSearchChange}/>
             </Form>
            {!isLoggedIn? <Button onClick={() => {navigate('/login') } }><AiOutlineUser  size={20} /></Button>:<Button  onClick={handleLogout}> <FontAwesomeIcon  icon={faSignOutAlt} /></Button>}
             <div className="cart-icon-container" style={{padding:10}}>

@@ -1,10 +1,10 @@
 
 import { Container, Row, Col } from 'react-bootstrap';
-import './Footer.css';
+import './Footer.css'
 export const Footer = () => {
   return (
     <footer className="bg-dark text-white mt-5 p-4 text-center">
-      <Container>
+      <Container className='foot'>
         <Row>
           <Col md="4">
             <h5>About Us</h5>

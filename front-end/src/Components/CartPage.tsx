@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Table, Card } from 'react-bootstrap';
-import { getCart, saveCart } from '../Utils/localStorageUtils';
+import { getCart, saveCart } from '../Utils/Utils';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';

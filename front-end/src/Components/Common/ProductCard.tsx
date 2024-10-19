@@ -1,7 +1,7 @@
 // src/components/ProductCard.js
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { getCart, saveCart } from '../../Utils/localStorageUtils';
+import { getCart, saveCart } from '../../Utils/Utils';
 
 export const ProductCard = ( product:any ) => {
     const data=product;
@@ -32,7 +32,7 @@ export const ProductCard = ( product:any ) => {
     const localUri=`http://localhost:8086/${data.product.imageUrl}`;
   return (
     <Card style={{ width: '18rem', margin: '20px' }}>
-      <Card.Img variant="top" src={localUri} width="250" height="250" />
+      <Card.Img variant="top" src={localUri} width="250" height="250" loading='lazy' alt={data.product.name} />
       <Card.Body>
         <Card.Title>{data.product.name}</Card.Title>
         <Card.Text>{data.product.description}</Card.Text>
