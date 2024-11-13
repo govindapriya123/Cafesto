@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProductCard from "./Common/ProductCard";
 import { fetchProducts } from "./Request/CategoryProductsQuery";
 import { useEffect, useState } from "react";
@@ -40,7 +40,7 @@ export const Desserts = ({ searchQuery }: any) => {
   }, [debouncedSearchQuery, products]);
 
   return (
-    <Container>
+    <div>
       <Row>
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product: any) => (
@@ -52,6 +52,6 @@ export const Desserts = ({ searchQuery }: any) => {
           <div>No results found</div>
         )}
       </Row>
-    </Container>
+    </div>
   );
 };

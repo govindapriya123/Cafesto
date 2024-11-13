@@ -99,6 +99,7 @@ const handleSearchChange = (e:any) => {
           <Navbar.Collapse id="basic-navbar-nav" className='w-100'>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/admin">Admin</Nav.Link>
               <Nav.Link href="/foods">Food</Nav.Link>
               <Nav.Link href="/desserts">Desserts</Nav.Link>
               <Nav.Link href="/beverages">Beverages</Nav.Link>

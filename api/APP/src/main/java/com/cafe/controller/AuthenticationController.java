@@ -31,23 +31,21 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
     @PostMapping("/signup")
-    public ResponseEntity<Customer> register(@RequestBody RegisterUserDto entity) {
-        //TODO: process POST request
-        Optional<Customer>customer=customerRepo.findByEmail(entity.getEmail());
-        if(customer.isPresent()){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else{
-            try{
-                Customer registeredCustomer=authenticationService.signup(entity);
-                System.out.println(registeredCustomer);
-                return new ResponseEntity<>(registeredCustomer,HttpStatus.OK);
+public ResponseEntity<?> register(@RequestBody RegisterUserDto entity) {
+    Optional<Customer> customer = customerRepo.findByEmail(entity.getEmail());
+    if (customer.isPresent()) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // Returns 400 without a body
+    } else {
+        try {
+            ResponseEntity<?> registeredCustomer = authenticationService.signup(entity);
+            return ResponseEntity.ok(registeredCustomer);  // Return 200 OK with the customer entity
 
-            }catch(Exception e){
-
-            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();  // Handle errors
         }
-        return null;
     }
+}
+
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto entity) {

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { getCart, saveCart } from '../../Utils/Utils';
-
+import StarRating from './StarRating';
 export const ProductCard = ( product:any ) => {
     const data=product;
     const [quantity, setQuantity] = useState(1);
@@ -37,7 +37,7 @@ export const ProductCard = ( product:any ) => {
         <Card.Title>{data.product.name}</Card.Title>
         <Card.Text>{data.product.description}</Card.Text>
         <Card.Text>Price: ${data.product.price}</Card.Text>
-        <Card.Text>Rating: {data.product.rating}</Card.Text>
+        <Card.Text> <StarRating totalStars={data.product.rating}/></Card.Text>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                     <Button variant="secondary" onClick={decreaseQuantity} disabled={quantity <= 1}>-</Button>
                     <span style={{ margin: '0 10px' }}>{quantity}</span>

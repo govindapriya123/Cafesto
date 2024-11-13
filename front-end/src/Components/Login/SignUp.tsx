@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSignupQuery } from '../Request/SignUpQuery';
 import './SignupPage.css';  // Update CSS file if needed
-
+import { useNavigate } from 'react-router-dom';
 const SignupPage: React.FC = () => {
   const [signupData, setSignupData] = useState({
     email: "",
@@ -13,20 +13,45 @@ const SignupPage: React.FC = () => {
     confirmPassword: ""
   });
   const [validated, setValidated] = useState(false);
-
+  const navigate=useNavigate();
   const onSuccess = (data: any) => {
     console.log('--data--', data);
-    if (data?.status) {
-      toast.success(data.messageIfAny, { position: 'top-right' });
-    } else {
-      console.log('--messageIfAny--', data.messageIfAny);
-      toast.error(data.messageIfAny, { position: 'top-right' });
-    }
-  }
 
-  const onError = (error: any) => {
-    toast.error('Signup failed. Please check your credentials.');
+    // Check for successful creation
+    if (data?.statusCode === "CREATED") {
+        toast.success("Signup successful! Welcome!", { position: 'top-right' });
+        // You may want to redirect the user or perform additional actions here
+        // For example, redirect to a login page or home page
+        setTimeout(() => {
+          navigate('/login');
+      }, 1000);
+    } else {
+        console.log('--messageIfAny--', data.messageIfAny);
+        toast.error(data.messageIfAny || "Signup failed. Please try again.", { position: 'top-right' });
+    }
+}
+const onError = (error: any) => {
+  console.log('--error--', error);
+
+  // Check if the error is an instance of Response to get server error messages
+  if (error instanceof Response) {
+      error.json().then(errData => {
+          // Check if the server provided a specific error message
+          if (errData?.message) {
+              toast.error(errData.message, { position: 'top-right' });
+          } else {
+              toast.error('Signup failed. Please try again.', { position: 'top-right' });
+          }
+      }).catch(() => {
+          // If the JSON parsing fails, fall back to a generic error message
+          toast.error('Signup failed. Please try again.', { position: 'top-right' });
+      });
+  } else {
+      // Handle generic errors
+      toast.error('Signup failed. Please check your credentials.', { position: 'top-right' });
   }
+};
+
 
   const SignupData = useSignupQuery(onSuccess, onError);
 
@@ -41,6 +66,7 @@ const SignupPage: React.FC = () => {
   const handleSignUp = async (e: { currentTarget: any; preventDefault: () => void; stopPropagation: () => void; }) => {
     const form = e.currentTarget;
     e.preventDefault();
+    setValidated(true);
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
