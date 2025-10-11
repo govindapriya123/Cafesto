@@ -41,6 +41,6 @@ npm start
 <img width="917" height="900" alt="image" src="https://github.com/user-attachments/assets/70a8c94e-a0b7-4e3f-ac2e-4ab39cc673a0" />
 <img width="916" height="911" alt="image" src="https://github.com/user-attachments/assets/c58a7dc0-1bbb-4202-b8a2-74cbc7ea6d6a" />
 <img width="885" height="896" alt="image" src="https://github.com/user-attachments/assets/5e53b2a9-8e59-4796-b496-24873293b2df" />
-<img width="909" height="530" alt="image" src="https://github.com/user-attachments/assets/0de18d40-09d6-4e13-bc72-6e71250d2022" />
+
 
 
