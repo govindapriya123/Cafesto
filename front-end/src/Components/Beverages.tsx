@@ -40,7 +40,7 @@ export const Beverages = ({ searchQuery }: any) => {
   }, [debouncedSearchQuery, products]);
 
   return (
-    <Container>
+    <div>
       <Row>
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product: any) => (
@@ -52,6 +52,6 @@ export const Beverages = ({ searchQuery }: any) => {
           <div>No results found</div>
         )}
       </Row>
-    </Container>
+    </div>
   );
 };

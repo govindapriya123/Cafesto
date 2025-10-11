@@ -11,6 +11,7 @@ import SignupPage from "./Components/Login/SignUp";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import { useRef, useState } from "react";
+import AdminPage from "./Components/Pages/AdminPage";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,6 +28,7 @@ function App() {
       <Header searchChange={handleSearchChange}/>
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path="/admin/*" element={<AdminPage />} />
         <Route path='/foods' element={<FoodsPage searchQuery={searchQuery} />} />
         <Route path='/desserts' element={<Desserts searchQuery={searchQuery} />} />
         <Route path='/beverages' element={<Beverages  searchQuery={searchQuery}/>} /> 

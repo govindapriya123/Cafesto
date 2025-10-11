@@ -26,24 +26,25 @@ const LoginPage: React.FC = () => {
   const [credentials, setCredentials] = useState<Credentials>({ email: '', password: '' });
   const navigate = useNavigate();
 
-  // Query for login
   const loginData = useLoginQuery(
     (data: OnSuccessData) => {
-      console.log('--data--', data);
+      console.log('--data received from API--', data); // Log the entire response
       if (data && data.token) {
-        console.log('--data--', data.token);
         localStorage.setItem('token', data.token);
         toast.success(data.messageIfAny as string, { position: 'top-right' });
-        navigate('/')
+        setTimeout(() => {
+          navigate('/');
+      }, 1000);
       } else {
         toast.error('Login failed. Please check your credentials.');
       }
     },
     (error: any) => {
-      console.error('Login error:', error);
+      console.error('Login error:', error); // Log the error response
       toast.error('Login failed. Please check your credentials.');
     }
   );
+  
 
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
