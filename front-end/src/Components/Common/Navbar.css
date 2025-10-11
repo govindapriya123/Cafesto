@@ -7,6 +7,14 @@
     padding: 0; /* Remove any default padding */
 }
 
+.custom-carousel.carousel {
+ /* removes ALL Bootstrap styles, including position */
+    position:"relative";
+  }
+.custom-carousel .carousel-indicators {
+    all: unset;         /* removes all Bootstrap styles */
+    position: absolute; /* keep only this property */
+  }
 .carousel-image-wrapper {
     height: 100%; /* Ensure image wrapper takes full height */
 }
@@ -15,3 +23,9 @@
     width: 100%; /* Ensure image takes full width */
     height: auto; /* Maintain aspect ratio */
 }
+.carousel-control-next, .carousel-control-prev {
+    transform: translateY(100px);
+}
+* {
+    box-sizing: border-box;
+  }
